@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maths Game</title>
+  <script>
+    let timer;
+    let countdown = 20; // 20 seconds for each game
+    function startGame() {
+      document.getElementById("timer").textContent = countdown;
+      timer = setInterval(() => {
+        countdown--;
+        document.getElementById("timer").textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          alert("Time's up! Redirecting...");
+          window.location.href = "../index.html";
+        }
+      }, 1000);
+    }
+
+    window.onload = startGame;
+  </script>
+</head>
+<body>
+  <h2>Maths Game</h2>
+  <p>Time Remaining: <span id="timer">20</span> seconds</p>
+  <div>
+    <p>This is the maths game area.</p>
+  </div>
+</body>
+</html>
