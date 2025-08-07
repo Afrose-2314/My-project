@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spin Play Enjoy</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="login-screen">
+    <h2>Welcome to SpinPlayEnjoy</h2>
+    <input type="text" id="username" placeholder="Enter your name or email" required />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="spinner-screen" style="display:none;">
+    <h2>Click to Spin and Play!</h2>
+    <div class="wheel" id="wheel"></div>
+    <button onclick="startSpin()">Spin</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+      </html>
