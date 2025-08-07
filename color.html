@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Game</title>
+  <style>
+    .color-box {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    let targetColor = "", countdown = 20, timer;
+
+    function randomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++)
+        color += letters[Math.floor(Math.random() * 16)];
+      return color;
+    }
+
+    function generateColors() {
+      const colors = [];
+      for (let i = 0; i < 4; i++) colors.push(randomColor());
+      targetColor = colors[Math.floor(Math.random() * 4)];
+      document.getElementById("target").innerText = targetColor;
+      const container = document.getElementById("colors");
+      container.innerHTML = "";
+      colors.forEach(c => {
+        const box = document.createElement("div");
+        box.className = "color-box";
+        box.style.background = c;
+        box.onclick = () => checkColor(c);
+        container.appendChild(box);
+      });
+    }
+
+    function checkColor(color) {
+      if (color === targetColor) {
+        alert("Correct! 🎉");
+        window.location.href = "../index.html";
+      } else {
+        alert("Wrong! Try again.");
+        generateColors();
+      }
+    }
+
+    function startGame() {
+      document.getElementById("timer").innerText = countdown;
+      generateColors();
+      timer = setInterval(() => {
+        countdown--;
+        document.getElementById("timer").innerText = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          alert("Time's up!");
+          window.location.href = "../index.html";
+        }
+      }, 1000);
+    }
+
+    window.onload = startGame;
+  </script>
+</head>
+<body>
+  <h2>Color Match Game</h2>
+  <p>Find the color: <b id="target"></b></p>
+  <p>Time Left: <span id="timer">20</span> sec</p>
+  <div id="colors"></div>
+</body>
+</html>
