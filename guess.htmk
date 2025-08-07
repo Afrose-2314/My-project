@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess Game</title>
+  <script>
+    let secret = Math.floor(Math.random() * 100) + 1;
+    let countdown = 20, timer;
+
+    function guessNumber() {
+      const guess = parseInt(document.getElementById("guess").value);
+      if (guess === secret) {
+        alert("Correct! You guessed it!");
+        window.location.href = "../index.html";
+      } else if (guess > secret) {
+        document.getElementById("hint").innerText = "Too High!";
+      } else {
+        document.getElementById("hint").innerText = "Too Low!";
+      }
+      document.getElementById("guess").value = "";
+    }
+
+    function startGame() {
+      document.getElementById("timer").innerText = countdown;
+      timer = setInterval(() => {
+        countdown--;
+        document.getElementById("timer").innerText = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          alert("Time's up! The number was " + secret);
+          window.location.href = "../index.html";
+        }
+      }, 1000);
+    }
+
+    window.onload = startGame;
+  </script>
+</head>
+<body>
+  <h2>Guess the Number (1 to 100)</h2>
+  <p>Time Left: <span id="timer"></span> sec</p>
+  <input type="number" id="guess" placeholder="Your guess"/>
+  <button onclick="guessNumber()">Guess</button>
+  <p id="hint"></p>
+</body>
+</html>
